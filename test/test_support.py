@@ -63,10 +63,10 @@ class RandomSeededTestCase(unittest.TestCase):
         
         # Use seed from enviroment if it is set
         try:
-            seed = long(os.environ[self.seed_var_name])
+            seed = int(os.environ[self.seed_var_name])
         except KeyError:
             random.seed()
-            seed = long(random.random() * 1e9)
+            seed = int(random.random() * 1e9)
 
         print(color.note('\n * Random seed: {} *'.format(seed)))
         random.seed(seed)

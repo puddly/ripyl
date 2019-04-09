@@ -38,7 +38,7 @@ class TestI2CFuncs(tsup.RandomSeededTestCase):
     def test_i2c_decode(self):
         self.test_name = 'I2C transfer'
         self.trial_count = 20
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
 
             clock_freq = 100.0e3
@@ -48,10 +48,10 @@ class TestI2CFuncs(tsup.RandomSeededTestCase):
             transfers.append(i2c.I2CTransfer(i2c.I2C.Write, 0x183, [5, 6, 240]))
             
             transfers = []
-            for _ in xrange(random.randint(1, 6)):
+            for _ in range(random.randint(1, 6)):
                 addr = random.randint(1, 2**10-1)
                 data = []
-                for __ in xrange(random.randint(1, 10)):
+                for __ in range(random.randint(1, 10)):
                     data.append(random.randint(0, 255))
                     
                 r_wn = random.choice((i2c.I2C.Write, i2c.I2C.Read))

@@ -34,15 +34,15 @@ class TestOnlineStats(unittest.TestCase):
             Item2 = 2
             Item3 = 3
 
-        for i in xrange(1,4):
+        for i in range(1,4):
             value = getattr(TEnum, 'Item' + str(i))
             self.assertEqual(value, i, msg='Enumeration value mismatch')
 
-        for i in xrange(1,4):
+        for i in range(1,4):
             name = TEnum(i)
             self.assertEqual(name, 'Item' + str(i), msg='Short name mismatch: {}'.format(name))
 
-        for i in xrange(1,4):
+        for i in range(1,4):
             name = TEnum(i, full_name=True)
             self.assertEqual(name, 'TEnum.Item' + str(i), msg='Full name mismatch: {}'.format(name))
 

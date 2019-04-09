@@ -54,7 +54,7 @@ class TestOnlineStats(unittest.TestCase):
         #data = range(11)
         #for n in data:
         #    os.accumulate(n)
-        os.accumulate_array(range(11))
+        os.accumulate_array(list(range(11)))
         
         self.assertAlmostEqual(os.mean(), 5.0, msg='Invalid mean')
         self.assertAlmostEqual(os.std(), 3.16227766, msg='Invalid std. dev.')
@@ -63,26 +63,26 @@ class TestOnlineStats(unittest.TestCase):
         os = stats.OnlineStats()
         
         # uniform random numbers
-        for i in xrange(10):
+        for i in range(10):
             os.reset()
-            for _ in xrange(10000): os.accumulate(random.uniform(0.0, 1.0))
+            for _ in range(10000): os.accumulate(random.uniform(0.0, 1.0))
             
             self.assertAlmostEqual(os.mean(), 0.5, places=1, msg='Invalid mean')
             self.assertAlmostEqual(os.std(), 0.28, places=1, msg='Invalid std. dev.')
         
 
         # gaussian random numbers
-        for i in xrange(10):
+        for i in range(10):
             os.reset()
-            for _ in xrange(1000): os.accumulate(random.gauss(0.5, 0.1))
+            for _ in range(1000): os.accumulate(random.gauss(0.5, 0.1))
             
             self.assertAlmostEqual(os.mean(), 0.5, places=1, msg='Invalid mean')
             self.assertAlmostEqual(os.std(), 0.1, places=1, msg='Invalid std. dev.')
             
         # gaussian random numbers 2
-        for i in xrange(10):
+        for i in range(10):
             os.reset()
-            for _ in xrange(1000): os.accumulate(random.gauss(0.5, 0.3))
+            for _ in range(1000): os.accumulate(random.gauss(0.5, 0.3))
             
             self.assertAlmostEqual(os.mean(), 0.5, places=1, msg='Invalid mean')
             self.assertAlmostEqual(os.std(), 0.3, places=1, msg='Invalid std. dev.')

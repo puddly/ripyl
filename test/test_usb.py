@@ -61,7 +61,7 @@ def _gen_random_usb_packet(bus_speed, allow_preamble_pid=True, allow_ext_pid=Tru
             pkt = usb.USBSOFPacket(pid, addr, speed=bus_speed)
     elif packet_kind == usb.USBPacketKind.Data:
         data_len = random.randint(1, 10)
-        data = [random.randint(0, 255) for d in xrange(data_len)]
+        data = [random.randint(0, 255) for d in range(data_len)]
         pkt = usb.USBDataPacket(pid, data, speed=bus_speed)
     elif packet_kind == usb.USBPacketKind.Handshake or pid == usb.USBPID.PRE:
         pkt = usb.USBHandshakePacket(pid, speed=bus_speed)
@@ -92,7 +92,7 @@ class TestUSBFuncs(tsup.RandomSeededTestCase):
     def test_usb_decode(self):
         self.test_name = 'USB transmission'
         self.trial_count = 70
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
 
             bus_speed = random.choice((usb.USBSpeed.LowSpeed, usb.USBSpeed.FullSpeed, usb.USBSpeed.HighSpeed))
@@ -108,7 +108,7 @@ class TestUSBFuncs(tsup.RandomSeededTestCase):
             
             
             packets = []
-            for _ in xrange(packet_num):
+            for _ in range(packet_num):
 
                 packets.append(_gen_random_usb_packet(bus_speed))
                 pid = packets[-1].pid
@@ -230,11 +230,11 @@ class TestUSBFuncs(tsup.RandomSeededTestCase):
         import ripyl.util.bitops as bitops
         self.test_name = 'USB CRC-16'
         self.trial_count = 1000
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
 
             data_size = random.randint(1,30)
-            data = [random.randint(0,255) for _ in xrange(data_size)]
+            data = [random.randint(0,255) for _ in range(data_size)]
 
             b_data = []
             for d in data:
@@ -255,7 +255,7 @@ class TestUSBFuncs(tsup.RandomSeededTestCase):
         # packet CRCs are in the right position
         self.test_name = 'USB field offsets'
         self.trial_count = 1000
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
         
             bus_speed = random.choice((usb.USBSpeed.LowSpeed, usb.USBSpeed.FullSpeed, usb.USBSpeed.HighSpeed))

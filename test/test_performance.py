@@ -53,11 +53,11 @@ class TestPerformance(unittest.TestCase):
         states = [0, 1] * (edge_count // 2)
 
         period = 1.0
-        intervals = [random.randint(1,15) * period for _ in xrange(len(states))]
+        intervals = [random.randint(1,15) * period for _ in range(len(states))]
 
         t = 0.0
         edges = [(t, states[0])]
-        for i in xrange(len(states)):
+        for i in range(len(states)):
             t += intervals[i]
             edges.append((t, states[i]))
 
@@ -66,7 +66,7 @@ class TestPerformance(unittest.TestCase):
         samples = list(sigp.synth_wave(iter(edges), sample_rate, sigp.min_rise_time(sample_rate) * 6.0, chunk_size=10000))
 
         self._t_start = time.time()
-        for _ in xrange(iterations):
+        for _ in range(iterations):
             d_edges = list(decode.find_edges(iter(samples), (0.0, 1.0)))
             #print('### found edges:', len(d_edges), d_edges[:10])
 
@@ -91,11 +91,11 @@ class TestPerformance(unittest.TestCase):
         states = [-1, 0, 1] * (edge_count // 2)
 
         period = 1.0
-        intervals = [random.randint(1,15) * period for _ in xrange(len(states))]
+        intervals = [random.randint(1,15) * period for _ in range(len(states))]
 
         t = 0.0
         edges = [(t, states[0])]
-        for i in xrange(len(states)):
+        for i in range(len(states)):
             t += intervals[i]
             edges.append((t, states[i]))
 
@@ -109,7 +109,7 @@ class TestPerformance(unittest.TestCase):
 
 
         self._t_start = time.time()
-        for _ in xrange(iterations):
+        for _ in range(iterations):
             d_edges = list(decode.find_multi_edges(iter(samples), hyst_thresh))
 
         samples_processed = iterations * (t * sample_rate)

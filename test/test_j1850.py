@@ -52,12 +52,12 @@ def gen_j1850_frame(break_thresh=0.1):
         target = random.randint(0, 255)
         source = random.randint(0, 255)
 
-    data = [random.randint(0, 255) for _ in xrange(random.randint(0, 6))]
+    data = [random.randint(0, 255) for _ in range(random.randint(0, 6))]
     if len(data) == 0: data = None
 
     ifr_data=None
     if msg_type < 8: # Need IFR
-        ifr_data = [random.randint(0, 255) for _ in xrange(random.randint(1, 6))]
+        ifr_data = [random.randint(0, 255) for _ in range(random.randint(1, 6))]
 
     f = j1850.J1850Frame(priority, msg_type, data, target, source, ifr_data)
 
@@ -71,12 +71,12 @@ class TestJ1850Funcs(tsup.RandomSeededTestCase):
     def test_j1850_vpw_decode(self):
         self.test_name = 'J1850 VPW frame'
         self.trial_count = 100
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
 
             frame_count = random.randint(1, 6)
             frames = []
-            for i in xrange(frame_count):
+            for i in range(frame_count):
                 frames.append(gen_j1850_frame())
 
             norm_bit = random.choice((j1850.VPWNormBitStyle.SAE, j1850.VPWNormBitStyle.GM))
@@ -103,12 +103,12 @@ class TestJ1850Funcs(tsup.RandomSeededTestCase):
     def test_j1850_pwm_decode(self):
         self.test_name = 'J1850 PWM frame'
         self.trial_count = 100
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
 
             frame_count = random.randint(1, 6)
             frames = []
-            for i in xrange(frame_count):
+            for i in range(frame_count):
                 frames.append(gen_j1850_frame())
 
             pwm_p, pwm_m = j1850.j1850_pwm_synth(frames)

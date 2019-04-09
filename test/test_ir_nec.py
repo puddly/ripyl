@@ -46,13 +46,13 @@ class TestNECFuncs(tsup.RandomSeededTestCase):
 
         carrier_freq = 38.0e3
 
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
 
             msg_count = randint(1,10)
 
             msgs = []
-            for i in xrange(msg_count):
+            for i in range(msg_count):
                 msg = nec.NECMessage(cmd=randint(0,255), addr_low=randint(0,255), \
                     addr_high=choice((None, randint(0,255))) )
                 msgs.append(msg)

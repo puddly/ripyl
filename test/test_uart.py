@@ -42,12 +42,12 @@ class TestUARTFuncs(tsup.RandomSeededTestCase):
     def test_uart_decode(self):
         self.test_name = 'UART message'
         self.trial_count = 10
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
             
             msg = []
-            for _ in xrange(20):
-                msg.append(chr(random.choice(xrange(ord('0'), ord('z')) )))
+            for _ in range(20):
+                msg.append(chr(random.choice(range(ord('0'), ord('z')) )))
                 
             msg = ''.join(msg)
             
@@ -136,14 +136,14 @@ class TestUARTFuncs(tsup.RandomSeededTestCase):
         stop_bits = 1
 
         char_count = 1000
-        data = [random.randint(0,255) for _ in xrange(char_count)]
+        data = [random.randint(0,255) for _ in range(char_count)]
 
         edges = list(uart.uart_synth(data, bits, baud, parity=parity, stop_bits=stop_bits))
 
         iterations = 10
 
         self._t_start = time.time()
-        for _ in xrange(iterations):
+        for _ in range(iterations):
             records = list(uart.uart_decode(iter(edges), bits=bits, polarity=polarity, parity=parity, stop_bits=stop_bits, \
                 stream_type=stream.StreamType.Edges, baud_rate=baud))
 

@@ -43,21 +43,21 @@ class TestStreamingFuncs(tsup.RandomSeededTestCase):
 
         save_file = os.path.join(out_dir, 'test_save_stream.bin')
 
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
 
             rec_count = random.randint(0,4)
 
             records = []
             
-            for r in xrange(rec_count):
-                rnd_kind = ''.join([chr(random.randrange(ord('a'), ord('z')+1)) for _ in xrange(4)])
+            for r in range(rec_count):
+                rnd_kind = ''.join([chr(random.randrange(ord('a'), ord('z')+1)) for _ in range(4)])
                 rec = stream.StreamRecord(kind=rnd_kind, status = random.randint(0,1000))
                 records.append(rec)
 
                 srec_count = random.randint(0,4)
-                for sr in xrange(srec_count):
-                    rnd_kind = ''.join([chr(random.randrange(ord('a'), ord('z')+1)) for _ in xrange(4)])
+                for sr in range(srec_count):
+                    rnd_kind = ''.join([chr(random.randrange(ord('a'), ord('z')+1)) for _ in range(4)])
                     srec = stream.StreamRecord(kind=rnd_kind, status = random.randint(0,1000))
                     rec.subrecords.append(srec)
 

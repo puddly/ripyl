@@ -38,7 +38,7 @@ class TestSPIFuncs(tsup.RandomSeededTestCase):
     def test_spi_decode(self):
         self.test_name = 'SPI message'
         self.trial_count = 20
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
             
             cpol = random.choice((0, 1))
@@ -49,7 +49,7 @@ class TestSPIFuncs(tsup.RandomSeededTestCase):
             clock_freq = random.uniform(1.0e3, 1.0e7)
             
             msg = []
-            for _ in xrange(random.randint(4, 20)):
+            for _ in range(random.randint(4, 20)):
                 msg.append(random.randint(0, 2**word_size-1))
                 
             use_edges = random.choice((True, False))                

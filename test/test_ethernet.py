@@ -37,16 +37,16 @@ class TestEthernetFuncs(tsup.RandomSeededTestCase):
     def test_ethernet_decode(self):
         self.test_name = 'Ethernet frame'
         self.trial_count = 100
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
             
             frame_count = random.randint(1, 4)
             frames = []
             data_frame_count = 0
-            for i in xrange(frame_count):
-                dest = [random.randint(0, 255) for _ in xrange(6)]
-                source = [random.randint(0, 255) for _ in xrange(6)]
-                data = [random.randint(0, 255) for _ in xrange(random.randint(64, 200))]
+            for i in range(frame_count):
+                dest = [random.randint(0, 255) for _ in range(6)]
+                source = [random.randint(0, 255) for _ in range(6)]
+                data = [random.randint(0, 255) for _ in range(random.randint(64, 200))]
                 frames.append(ether.EthernetFrame(dest, source, data))
 
             tx = ether.ethernet_synth(frames, overshoot=None, idle_start=2.0e-6, \

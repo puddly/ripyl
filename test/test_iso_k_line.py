@@ -38,13 +38,13 @@ class TestKLineFuncs(tsup.RandomSeededTestCase):
     def test_kline_decode(self):
         self.test_name = 'K-line message'
         self.trial_count = 10
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
             
             msg_count = random.randint(1, 6)
             messages = []
 
-            for i in xrange(msg_count):
+            for i in range(msg_count):
                 data_bytes = random.randint(0,6)
 
                 protocol = random.choice((kline.KLineProtocol.ISO9141, kline.KLineProtocol.ISO14230))
@@ -61,7 +61,7 @@ class TestKLineFuncs(tsup.RandomSeededTestCase):
                 sid = random.randint(0, 0x3F)
                 msg.append(sid)
                 
-                msg.extend([random.randint(0,0xFF) for b in xrange(data_bytes)])
+                msg.extend([random.randint(0,0xFF) for b in range(data_bytes)])
                 cs = sum(msg) % 256
                 msg.append(cs)
                 messages.append(msg)
@@ -77,7 +77,7 @@ class TestKLineFuncs(tsup.RandomSeededTestCase):
                         msg = [0x80, data_bytes+1, 0xF1, 0xD1]
 
                 msg.append(sid + 0x40)
-                msg.extend([random.randint(0,0xFF) for b in xrange(data_bytes)])
+                msg.extend([random.randint(0,0xFF) for b in range(data_bytes)])
                 cs = sum(msg) % 256
                 msg.append(cs)
                 messages.append(msg)

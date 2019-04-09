@@ -40,7 +40,7 @@ def gen_random_can_frame():
 
     data_count = random.randint(0,8)
 
-    data = [random.randint(0,0xFF) for b in xrange(data_count)]
+    data = [random.randint(0,0xFF) for b in range(data_count)]
 
     ack_bit = random.choice((True, False))
 
@@ -57,13 +57,13 @@ class TestCANFuncs(tsup.RandomSeededTestCase):
     def test_can_decode(self):
         self.test_name = 'CAN frame'
         self.trial_count = 100
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
             
             frame_count = random.randint(3, 6)
             frames = []
             data_frame_count = 0
-            for i in xrange(frame_count):
+            for i in range(frame_count):
 
                 use_ovl = random.random() < 0.1
 
@@ -84,7 +84,7 @@ class TestCANFuncs(tsup.RandomSeededTestCase):
             if data_frame_count < 3:
                 # Generate additional data and remote frames to help ensure there are enough
                 # edges for auto rate detection.
-                for i in xrange(3 - data_frame_count):
+                for i in range(3 - data_frame_count):
                     frames.append(gen_random_can_frame())
 
             clock_freq = random.randint(10e3, 1e6)

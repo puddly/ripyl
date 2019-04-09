@@ -36,14 +36,14 @@ class TestLINFuncs(tsup.RandomSeededTestCase):
     def test_lin_decode(self):
         self.test_name = 'LIN frame'
         self.trial_count = 100
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
             
             frame_count = random.randint(3, 6)
             frames = []
 
             # We will randomly decide which ids use enhanced checksum
-            id_cs_type = [random.choice((lin.LINChecksum.Classic, lin.LINChecksum.Enhanced)) for _ in xrange(0x40)]
+            id_cs_type = [random.choice((lin.LINChecksum.Classic, lin.LINChecksum.Enhanced)) for _ in range(0x40)]
 
             # IDs 60 and 61 always use classic checksums
             id_cs_type[60] = lin.LINChecksum.Classic
@@ -53,13 +53,13 @@ class TestLINFuncs(tsup.RandomSeededTestCase):
             enhanced_ids = [i for i, t in enumerate(id_cs_type) if t == lin.LINChecksum.Enhanced]
 
 
-            for i in xrange(frame_count):
+            for i in range(frame_count):
 
                 lin_id = random.randint(0, 50)
 
                 data_count = random.randint(0,8)
 
-                data = [random.randint(0,0xFF) for b in xrange(data_count)]
+                data = [random.randint(0,0xFF) for b in range(data_count)]
 
                 frames.append(lin.LINFrame(lin_id, data, cs_type=id_cs_type[lin_id]))
 

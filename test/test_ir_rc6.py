@@ -47,13 +47,13 @@ class TestRC6Funcs(tsup.RandomSeededTestCase):
         sample_rate = 10.0 * carrier_freq
         rise_time = sigp.min_rise_time(sample_rate) * 1.01
 
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
 
             msg_count = randint(1,10)
 
             msgs = []
-            for i in xrange(msg_count):
+            for i in range(msg_count):
                 do_mode6 = choice([True, False])
                 if do_mode6:
                     msg = rc6.RC6Message(addr=randint(0,255), cmd=randint(0,255), toggle=randint(0,1), \

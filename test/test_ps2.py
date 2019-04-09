@@ -38,13 +38,13 @@ class TestPS2Funcs(tsup.RandomSeededTestCase):
     def test_ps2_decode(self):
         self.test_name = 'PS/2 message'
         self.trial_count = 20
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
             
             clock_freq = random.uniform(10.0e3, 13.0e3)
             
             frames = []
-            for _ in xrange(random.randint(4, 20)):
+            for _ in range(random.randint(4, 20)):
                 frames.append(ps2.PS2Frame(random.randint(0, 2**8-1), \
                     random.choice((ps2.PS2Dir.DeviceToHost, ps2.PS2Dir.HostToDevice))) \
                 )

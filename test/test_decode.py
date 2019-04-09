@@ -40,7 +40,7 @@ class TestDecodeFuncs(tsup.RandomSeededTestCase):
     def test_find_symbol_rate(self):
         self.test_name = 'find_symbol_rate() test'
         self.trial_count = 40
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
 
             freq = random.randrange(100, 10000)
@@ -48,14 +48,14 @@ class TestDecodeFuncs(tsup.RandomSeededTestCase):
             # construct a list of edges with random spans
             e = []
             t = 0.0
-            for _ in xrange(200):
+            for _ in range(200):
                 n = random.randrange(1, 5)
                 t += n / freq
                 e.append((t,1)) # we maintain state at constant 1 since find_symbol_rate() doesn't care
             
             spectra = random.randrange(2, 5)
 
-            for s in xrange(spectra, 1, -1):
+            for s in range(spectra, 1, -1):
                 detected_rate = decode.find_symbol_rate(iter(e), spectra=s)
                 if detected_rate > 0:
                     break
@@ -100,11 +100,11 @@ class TestDecodeFuncs(tsup.RandomSeededTestCase):
         no_noise_vectors = ('rising_edge_190', 'rising_edge_200')
 
         sample_vectors = {}
-        for name, vector in edge_vectors.iteritems():
+        for name, vector in edge_vectors.items():
             samples = list(sigp.edges_to_sample_stream(iter(vector[0]), sample_period))
             sample_vectors[name] = (samples, vector[1])
 
-        base_names = sample_vectors.keys()
+        base_names = list(sample_vectors.keys())
         for name in base_names:
             if name in no_noise_vectors:
                 continue
@@ -125,7 +125,7 @@ class TestDecodeFuncs(tsup.RandomSeededTestCase):
 
         #sample_vectors.pop('rising_edge_400', None)
 
-        for name, vector in sample_vectors.iteritems():
+        for name, vector in sample_vectors.items():
             samples = vector[0]
             expect_success = vector[1]
 
@@ -146,7 +146,7 @@ class TestDecodeFuncs(tsup.RandomSeededTestCase):
     def test_find_multi_edges(self):
         self.test_name = 'find_multi_edges() test'
         self.trial_count = 100
-        for i in xrange(self.trial_count):
+        for i in range(self.trial_count):
             self.update_progress(i+1)
 
             bit_period = 1.0
@@ -163,7 +163,7 @@ class TestDecodeFuncs(tsup.RandomSeededTestCase):
             state = 0
             edges = []
             t = 0.0
-            for _ in xrange(10):
+            for _ in range(10):
                 while state == prev_state: # Guarantee that each edge is different from the previous
                     state = random.randint(logic_states[0], logic_states[-1])
 
@@ -179,7 +179,7 @@ class TestDecodeFuncs(tsup.RandomSeededTestCase):
             samples = sigp.synth_wave(iter(edges), sample_rate, rt, logic_states=logic_states)
 
             # Generate logic levels in range [0.0, 1.0]
-            logic_levels = [float(level) / (num_states-1) for level in xrange(num_states)]
+            logic_levels = [float(level) / (num_states-1) for level in range(num_states)]
             #print('## logic_levels:', logic_levels)
             found_edges = list(decode.find_multi_edges(samples, decode.gen_hyst_thresholds(logic_levels)))
             #print('## found:', found_edges)
@@ -206,7 +206,7 @@ class TestEdgeSequence(unittest.TestCase):
         
         states = [0,0,1,1,1,1,1,1,0,0, 0,0,0,0,0,0,1,1,1,1]
         
-        for i, s in zip(xrange(20), states):
+        for i, s in zip(range(20), states):
             es.advance(0.25)
             #print('@@@ cs', es.cur_state(), states[i])
             self.assertEqual(es.cur_state(), s, 'advance() mismatch')

@@ -36,8 +36,7 @@ def find_cy_modules():
     #print '### cy_files:', cy_files
 
     # Convert slashes to dotted module notation
-    trans = string.maketrans('/\\', '..')
-    cy_mods = [f.translate(trans) for f in cy_files]
+    cy_mods = [f.replace('/', '.').replace('\\', '.') for f in cy_files]
     
     # Remove the leading porton of the paths up to "cython"
     cy_mods = ['.'.join(m[m.find('cython'):].split('.')[1:]) for m in cy_mods]
